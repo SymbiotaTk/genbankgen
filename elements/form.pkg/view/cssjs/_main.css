@@ -1,0 +1,155 @@
+@charset "UTF-8";
+#ns_gb {
+  /* Sequences collection table */ }
+  #ns_gb .tooltip-icon-content {
+    width: 360px;
+    padding: 15px;
+    color: black;
+    background-color: white;
+    font-size: medium;
+    box-shadow: inset 0 0 10px #050; }
+  #ns_gb .alert .-info-icon {
+    line-height: 20px;
+    float: right;
+    margin-left: 15px; }
+  #ns_gb .modal .-info-icon {
+    font-size: 40px;
+    position: absolute;
+    top: 15px;
+    right: 35px; }
+  #ns_gb .modalbox-modal-content .-info-icon {
+    float: right;
+    color: #aaa; }
+  #ns_gb .-info-icon {
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    color: #f1f1f1; }
+  #ns_gb .modal .-info-icon:hover,
+  #ns_gb .modal .-info-icon:focus {
+    color: #bbb; }
+  #ns_gb .-info-icon:hover,
+  #ns_gb .-info-icon:focus {
+    text-decoration: none;
+    color: #000; }
+  #ns_gb .-slidecheck {
+    width: 100px;
+    height: 30px;
+    background: #333;
+    margin: 6px 6px;
+    border-radius: 50px;
+    position: relative; }
+  #ns_gb .-slidecheck input[type=checkbox] {
+    visibility: hidden; }
+  #ns_gb .-slidecheck:before {
+    content: 'Yes';
+    position: absolute;
+    top: 7px;
+    left: 11px;
+    height: 2px;
+    color: #26ca28;
+    font-size: 14px; }
+  #ns_gb .-slidecheck:after {
+    content: 'No';
+    position: absolute;
+    top: 7px;
+    left: 66px;
+    height: 2px;
+    color: #cdc;
+    font-size: 14px; }
+  #ns_gb .-slidecheck label {
+    /* display: block; */
+    width: 48px;
+    height: 22px;
+    border-radius: 50px;
+    transition: all .5s ease;
+    cursor: pointer;
+    position: absolute;
+    top: 4px;
+    z-index: 1;
+    left: 6px;
+    background: #ddd; }
+  #ns_gb .-slidecheck input[type=checkbox]:checked + label {
+    left: 48px;
+    background: #26ca28; }
+  #ns_gb span.-slidecheck-label {
+    position: relative;
+    top: -34px;
+    float: left;
+    margin-right: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left; }
+  #ns_gb #sequences {
+    border: solid 2px green; }
+  #ns_gb #sequences div.well {
+    background-color: orange;
+    padding: 6px; }
+  #ns_gb #sequences div.well-head {
+    padding: 3px;
+    background-color: #cdc;
+    font-weight: bold; }
+  #ns_gb #sequences div.well span.element_id,
+  #ns_gb #sequences div.well span.element_visit,
+  #ns_gb #sequences div.well span.element_name,
+  #ns_gb #sequences div.well span.element_seq,
+  #ns_gb #sequences div.well span.element_delete,
+  #ns_gb #sequences div.well-head span.element_id,
+  #ns_gb #sequences div.well-head span.element_visit,
+  #ns_gb #sequences div.well-head span.element_name,
+  #ns_gb #sequences div.well-head span.element_seq,
+  #ns_gb #sequences div.well-head span.element_delete {
+    width: 100px; }
+  #ns_gb #sequences .viewadd::before,
+  #ns_gb #sequences .deladd::before,
+  #ns_gb #sequences .infolink::before {
+    content: '?';
+    font-size: 80%;
+    font-family: sans-serif;
+    vertical-align: middle;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    display: inline-block;
+    width: 1.8ex;
+    height: 1.8ex;
+    border-radius: 1ex;
+    color: #e5e5e5;
+    background: #343;
+    border: thin solid #e5e5e5; }
+  #ns_gb #sequences .viewadd::before {
+    content: 'ʘ';
+    color: #343; }
+  #ns_gb #sequences .deladd::before {
+    content: '×'; }
+  #ns_gb #sequences .viewadd:hover::before,
+  #ns_gb #sequences .deladd:hover::before,
+  #ns_gb #sequences .infolink:hover::before {
+    color: #343;
+    background: #e5e5e5;
+    border-color: #343; }
+  #ns_gb #sequences a.deladd span,
+  #ns_gb #sequences a.infolink span {
+    display: none;
+    position: absolute;
+    color: #000;
+    margin-left: -200px;
+    background: #ddd;
+    border: 1px solid #000;
+    width: 350px;
+    padding: 5px;
+    z-index: 9999; }
+  #ns_gb #sequences a.deladd,
+  #ns_gb #sequences a.infolink {
+    position: relative;
+    float: right; }
+  #ns_gb #sequences a.infolink hr {
+    width: 64%;
+    color: #e5e5e5; }
+  #ns_gb #sequences a.deladd:hover span,
+  #ns_gb #sequences a.infolink:hover span {
+    display: block;
+    text-align: left; }

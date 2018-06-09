@@ -1,0 +1,3 @@
+>Feature {%ID%}
+<{%START%}       >{%END%}    {%RNA%} 
+                        product       {%GENE%}

@@ -1,0 +1,10 @@
+        {
+          name name {
+            last "{%LastName%}",
+            first "{%FirstName%}",
+            middle "{%MiddleInitial%}",
+            initials "{%Initials%}",
+            suffix "",
+            title ""
+          }
+        }

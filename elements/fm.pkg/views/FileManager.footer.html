@@ -1,0 +1,79 @@
+</div>
+<script>
+function newfolder(p){var n=document.getElementById("newfilename").value;
+var t = document.querySelector(
+  'input[name="newfile"]:checked').value;
+  if(n!==null&&n!==''&&t){
+    window.location.hash="#";
+    window.location.search='{%base_query_noqmark%}'+encodeURIComponent(p)+'&new='+encodeURIComponent(n)+'&type='+encodeURIComponent(t);
+  }
+}
+function rename(p,f){
+  var n = prompt('{%control_name%}',f);
+  if(n!==null&&n!==''&&n!=f){
+    window.location.search='{%base_query_noqmark%}'+encodeURIComponent(p)+'&ren='+encodeURIComponent(f)+'&to='+encodeURIComponent(n);
+  }
+}
+function change_checkboxes(l,v){
+  for(var i=l.length-1;i>=0;i--){
+    l[i].checked=(typeof v==='boolean')?v:!l[i].checked;}
+}
+function get_checkboxes(){
+  var i=document.getElementsByName('file[]'),a=[];
+  for(var j=i.length-1;j>=0;j--){if(i[j].type='checkbox'){a.push(i[j]);}}
+  return a;
+}
+function select_all(){var l=get_checkboxes();change_checkboxes(l,true);}
+function unselect_all(){var l=get_checkboxes();change_checkboxes(l,false);}
+function invert_all(){var l=get_checkboxes();change_checkboxes(l);}
+function mailto(p,f){
+  var http=new XMLHttpRequest();
+  var params="path="+p+"&file="+f+"&type=mail&ajax=true";
+  http.open("POST", '', true);
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.onreadystatechange=function(){
+    if(http.readyState == 4 && http.status == 200){ alert(http.responseText);}}
+  http.send(params);
+}
+function showSearch(u){
+  var http=new XMLHttpRequest();
+  var params="path="+u+"&type=search&ajax=true";
+  http.open("POST", '', true);
+  http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  http.onreadystatechange=function(){
+    if(http.readyState == 4 && http.status == 200){
+      window.searchObj = http.responseText;
+      document.getElementById('searchresultWrapper').innerHTML = "";
+      window.location.hash="#searchResult"}}
+  http.send(params);
+}
+var searchEl = document.querySelector('input[type=search]');
+var timeout = null;
+searchEl.onkeyup = function(evt) {
+  clearTimeout(timeout);
+  var data = JSON.parse(window.searchObj);
+  var searchTerms = document.querySelector('input[type=search]').value;
+  timeout = setTimeout(
+    function () {
+      if(searchTerms.length>=2) {
+        var res = getSearchResult(data,searchTerms);
+        var f1='',f2='';
+        res.folders.forEach(
+          function (d){
+            f1+='<li class="'+d.type+'"><a href="{%base_query%}'+ d.path+'">'+d.name+'</a></li>'; });
+            res.files.forEach(
+              function (d){
+                f2+='<li class="'+d.type+'"><a href="{%base_query%}'+ d.path +'&view='+ d.name +'">'+d.name+'</a></li>';});
+            document.getElementById('searchresultWrapper').innerHTML = '<div class="model-wrapper">'+f1+f2+'</div>';}},
+    500);
+};
+function getSearchResult(data,searchTerms) {var folders=[],files=[];data.forEach(function(d){if(d.type === 'folder') { getSearchResult(d.items,searchTerms);if(d.name.toLowerCase().match(searchTerms)) {folders.push(d);}} else if(d.type === 'file') {if(d.name.toLowerCase().match(searchTerms)) {files.push(d);} }}); return {folders: folders, files: files};}
+function checkbox_toggle(){var l=get_checkboxes();l.push(this);change_checkboxes(l);}
+function backup(p,f){ var http=new XMLHttpRequest();var params="path="+p+"&file="+f+"&type=backup&ajax=true";http.open("POST", '', true);http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");http.onreadystatechange=function(){if(http.readyState == 4 && http.status == 200){alert(http.responseText);}}
+http.send(params); return false; }
+function edit_save(i,atr){var contents=(atr=="ace")?editor.getSession().getValue():document.getElementById('normal-editor').value;if(!!contents){var form=document.createElement("form");form.setAttribute("method", 'POST');form.setAttribute("action", '');var inputField=document.createElement("textarea");inputField.setAttribute("type", "textarea");inputField.setAttribute("name", 'savedata');var _temp=document.createTextNode(contents);inputField.appendChild(_temp);form.appendChild(inputField);document.body.appendChild(form);form.submit();}}
+</script>
+{%use_highlightjs_js%}
+{%use_ace_editor_js%}
+</body>
+</html>

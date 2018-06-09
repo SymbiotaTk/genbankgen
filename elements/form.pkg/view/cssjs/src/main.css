@@ -1,0 +1,218 @@
+.tooltip-icon-content {
+    width: 360px;
+    padding: 15px;
+    color: black;
+    background-color: white;
+    font-size: medium;
+    box-shadow: inset 0 0 10px #050;
+}
+
+.alert .-info-icon
+{
+    line-height: 20px;
+    float: right;
+    margin-left: 15px;
+}
+
+.modal .-info-icon
+{
+    font-size: 40px;
+    position: absolute;
+    top: 15px;
+    right: 35px;
+}
+
+.modalbox-modal-content .-info-icon
+{
+    float: right;
+    color: #aaa;
+}
+
+.-info-icon
+{
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    -webkit-transition: .3s;
+         -o-transition: .3s;
+            transition: .3s;
+    color: #f1f1f1;
+}
+
+.modal .-info-icon:hover,
+.modal .-info-icon:focus
+{
+    color: #bbb;
+}
+
+.-info-icon:hover,
+.-info-icon:focus
+{
+    text-decoration: none;
+    color: #000;
+}
+
+.-slidecheck {
+      width: 100px;
+    	height: 30px;
+    	background: #333;
+    	margin: 6px 6px;
+
+    	border-radius: 50px;
+    	position: relative;
+}
+
+.-slidecheck input[type=checkbox] {
+    	visibility: hidden;
+}
+
+.-slidecheck:before {
+    	content: 'Yes';
+    	position: absolute;
+    	top: 7px;
+    	left: 11px;
+    	height: 2px;
+    	color: #26ca28;
+    	font-size: 14px;
+}
+
+.-slidecheck:after {
+    	content: 'No';
+    	position: absolute;
+    	top: 7px;
+    	left: 66px;
+    	height: 2px;
+    	color: #cdc;
+    	font-size: 14px;
+}
+
+.-slidecheck label {
+    	/* display: block; */
+    	width: 48px;
+    	height: 22px;
+    	border-radius: 50px;
+
+    	transition: all .5s ease;
+    	cursor: pointer;
+    	position: absolute;
+    	top: 4px;
+    	z-index: 1;
+    	left: 6px;
+    	background: #ddd;
+}
+
+.-slidecheck input[type=checkbox]:checked + label {
+    	left: 48px;
+    	background: #26ca28;
+}
+
+span.-slidecheck-label {
+      position: relative;
+      top: -34px;
+      float: left;
+      margin-right: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: left;
+}
+
+@media screen and (max-width:750px) {
+}
+
+/* Sequences collection table */
+
+#sequences {
+    border: solid 2px green;
+}
+
+#sequences div.well {
+    background-color: orange;
+    padding: 6px;
+}
+
+#sequences div.well-head {
+    padding: 3px;
+    background-color: #cdc;
+    font-weight: bold;
+}
+
+#sequences div.well span.element_id,
+#sequences div.well span.element_visit,
+#sequences div.well span.element_name,
+#sequences div.well span.element_seq,
+#sequences div.well span.element_delete,
+#sequences div.well-head span.element_id,
+#sequences div.well-head span.element_visit,
+#sequences div.well-head span.element_name,
+#sequences div.well-head span.element_seq,
+#sequences div.well-head span.element_delete {
+    width: 100px;
+}
+
+#sequences .viewadd::before,
+#sequences .deladd::before,
+#sequences .infolink::before
+{
+      content: '?';
+      font-size: 80%;
+      font-family: sans-serif;
+      vertical-align: middle;
+      font-weight: bold;
+      text-align: center;
+      line-height:1;
+      display: inline-block;
+      width: 1.8ex;
+      height: 1.8ex;
+      border-radius: 1ex;
+      color: #e5e5e5;
+      background: #343;
+      border: thin solid #e5e5e5;
+}
+
+#sequences .viewadd::before {
+      content: 'ʘ';
+      color: #343;
+}
+
+#sequences .deladd::before {
+      content: '×';
+}
+
+#sequences .viewadd:hover::before,
+#sequences .deladd:hover::before,
+#sequences .infolink:hover::before
+{
+      color: #343;
+      background: #e5e5e5;
+      border-color: #343;
+}
+
+#sequences a.deladd span,
+#sequences a.infolink span {
+      display: none;
+      position: absolute;
+      color: #000;
+      margin-left: -200px;
+      background: #ddd;
+      border: 1px solid #000;
+      width: 350px;
+      padding: 5px;
+      z-index: 9999;
+}
+
+#sequences a.deladd,
+#sequences a.infolink {
+      position: relative;
+      float: right;
+}
+
+#sequences a.infolink hr {
+      width: 64%;
+      color: #e5e5e5;
+}
+
+#sequences a.deladd:hover span,
+#sequences a.infolink:hover span {
+      display: block;
+      text-align: left;
+}

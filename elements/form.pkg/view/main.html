@@ -1,0 +1,138 @@
+
+{%LINKED_CSS%}
+
+<div id="ns_gb" class="CSSNS">
+
+  <button class="_box _teal" onclick="openmodal('myModal')">Submit sequence to GenBank</button>
+  <div id="myModal" class="modalbox-modal ">
+      <div class="modalbox-modal-content _cream">
+          <span class="-close" id="modalbox-close">✖</span>
+          <div>
+              <p></p>
+              <form id="frm_sequence">
+                  <fieldset>
+                      <legend>Add a GenBank submission:</legend>
+                    <div class="row">
+                      <div class="col m6">
+                          <label for="username">User name:</label>
+                          <input type="text" class="_full-width" id="username" placeholder="User Name">
+                          <input type="hidden" class="_full-width" id="user_id">
+                      </div>
+                      <div class="col m6">
+                        <label for="record_id">Record id:</label>
+                        <input type="text" class="_full-width" id="record_id" placeholder="OccurrenceId">
+                      </div>
+                      <div class="col m12">
+                        <label for="sequence">Sequence:</label>
+                        <textarea class="_full-width" id="sequence" placeholder="Paste FASTA formatted sequence here:&#10;&nbsp;&nbsp;&nbsp;>Genus_species &#10;&nbsp;&nbsp;&nbsp;ATGCAATTCG..." rows="10"></textarea>
+                      </div>
+                      <div class="col m12">
+                        <span class="tooltip -tooltip-left -info-icon">?
+                          <span class="tooltiptext tooltip-icon-content _nodelay _alignLeft">
+                              <strong>[ITS]</strong><br />
+                              small subunit ribosomal RNA, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA, partial sequence<br />
+                              <br />
+                              <strong>[LSU]</strong><br />
+                              large subunit ribosomal RNA<br />
+                              <br />
+                              <strong>[SSU]</strong><br />
+                              small subunit ribosomal RNA<br />
+                              <br />
+                              <strong>[ITS1]</strong><br />
+                              internal transcribed spacer 1<br />
+                              <br />
+                              <strong>[ITS2]</strong><br />
+                              internal transcribed spacer 2<br />
+                          </span>
+                        </span>
+                        <label for="sequence_definition">Sequence definition: </label>
+                        <select class="_full-width" id="sequence_definition" name="sequence_definition">
+                            <option value=""selected>Please choose ...</option>
+                            <option value="small subunit ribosomal RNA, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA, partial sequence">ITS</option>
+                            <option value="large subunit ribosomal RNA">LSU</option>
+                            <option value="small subunit ribosomal RNA">SSU</option>
+                            <option value="internal transcribed spacer 1">ITS1 only</option>
+                            <option value="internal transcribed spacer 2">ITS2 only</option>
+                        </select>
+                      </div>
+
+                      <div class="col m12">
+                        <label for="sequencing_technology">What method was used to obtain this sequence: </label>
+                        <select class="_full-width" id="sequencing_technology" name="sequencing_technology">
+                            <option value=""selected>Please choose ...</option>
+                            <option value="Sanger dideoxy sequencing">Sanger dideoxy sequencing</option>
+                            <option value="454">454</option>
+                            <option value="Helicos">Helicos</option>
+                            <option value="Illumina">Illumina</option>
+                            <option value="IonTorrent">IonTorrent</option>
+                            <option value="Pacific Biosciences">Pacific Biosciences</option>
+                            <option value="SOLiD">SOLiD</option>
+                            <option value="Other">Other</option>
+                        </select>
+                      </div>
+                      <div class="col m12">
+                        <span class="-slidecheck-label">Is this published?</span>
+                        <div class="-slidecheck">
+                          <input type="checkbox" id="is_published" />
+                          <label for="is_published"></label>
+                        </div>
+                        <div id="publication_attributes">
+                          <div class="form-group">
+                            <label for="reference">Title of Publication:</label>
+                            <input type="text" class="form-control" id="reference" placeholder="Title of Publication">
+                          </div>
+                          <div class="form-group">
+                            <label for="additional_authors">Additional authors:</label>
+                            <!-- <input type="text" class="form-control" id="additionalAuthors" placeholder="Ex. Miller,A.N., Hill,T. and Smith,S."> -->
+                            <div id="add_authors"></div>
+                            <div id="show_authors"></div>
+
+                            <input type="hidden" name="additional_authors" id="additional_authors" />
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col m12">
+                      <span class="-slidecheck-label">Embargo this for a year?</span>
+                      <div class="-slidecheck">
+                          <input type="checkbox" id="has_embargo" />
+                          <label for="has_embargo"></label>
+                      </div>
+                    </div>
+                    <div class="col m12">
+                        <button id="add_sequence" type="submit" class="_primary button">Add</button>
+                    </div>
+                  </fieldset>
+              </form>
+              <div class="row">
+                  <div id="sequences" class="col m12">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col m6">
+                      <button id="generate" class="_box _teal">Generate</button>
+                  </div>
+                  <div class="col m6">
+                      <button id="open_file_manager" class="_box _teal">Open file manager</button>
+                  </div>
+            </div>
+          </div>
+      </div>
+  </div>
+
+</div>
+<script language="JavaScript">
+    var _gb_config = {
+        "currentUser": "{%currentUser%}",
+        "currentUserId": "{%currentUserId%}",
+        "currentRecordId": "{%currentOccid%}",
+        "createUrl": "{%rurl_create%}",
+        "pluginUrl": "{%plugin_url%}",
+        "generatedUrl": "{%rurl_generated%}",
+        "fileManagerUrl": "{%rurl_fm%}",
+        "buttonPath": "{%button_path%}",
+        "userMetaDataUrl": "{%rurl_user%}{%currentUserId%}",
+        "specimenMetaDataUrl": "{%rurl_object%}{%currentOccid%}",
+    };
+</script>
+
+{%LINKED_JavaScript%}
