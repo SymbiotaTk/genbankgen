@@ -15,7 +15,8 @@ formated submission file on the server. The embedded PHP file manager provides a
 featured application for managing, editing, and downloading files produced by the plugin.
 
 
-[GenBank](https://www.ncbi.nlm.nih.gov/genbank/)
-[Tbl2asn](https://www.ncbi.nlm.nih.gov/genbank/tbl2asn2/)
-[Symbiota](http://symbiota.org/docs/)
-[Mycology Collections Portal](http://mycoportal.org/portal/index.php)
+### References
+* [GenBank](https://www.ncbi.nlm.nih.gov/genbank/)
+* [Tbl2asn](https://www.ncbi.nlm.nih.gov/genbank/tbl2asn2/)
+* [Symbiota](http://symbiota.org/docs/)
+* [Mycology Collections Portal](http://mycoportal.org/portal/index.php)
