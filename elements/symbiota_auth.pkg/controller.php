@@ -103,7 +103,7 @@ class ControllerSymbiotaAuth {
         $user = $um->getUser($userId);
 
         if (method_exists($person, "getMiddleInitial")) {
-            $user['middleInitial'] = $person->getMiddleInitial();
+            $user['middleinitial'] = $person->getMiddleInitial();
         }
         $user['department'] = $person->getDepartment();
         $user['address']    = $person->getAddress();
