@@ -102,6 +102,7 @@ class ControllerSymbiotaAuth {
         $um = new \PermissionsManager();
         $user = $um->getUser($userId);
 
+	$user['middleInitial'] = $person->getMiddleInitial();
         $user['department'] = $person->getDepartment();
         $user['address']    = $person->getAddress();
         $user['phone']      = $person->getPhone();
