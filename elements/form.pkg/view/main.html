@@ -29,7 +29,7 @@
                       <div class="col m12">
                         <span class="tooltip -tooltip-left -info-icon">?
                           <span class="tooltiptext tooltip-icon-content _nodelay _alignLeft">
-                              <strong>[ITS]</strong><br />
+                              <strong>[ITS only or ITS-LSU]</strong><br />
                               small subunit ribosomal RNA, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA, partial sequence<br />
                               <br />
                               <strong>[LSU]</strong><br />
@@ -48,7 +48,7 @@
                         <label for="sequence_definition">Sequence definition: </label>
                         <select class="_full-width" id="sequence_definition" name="sequence_definition">
                             <option value=""selected>Please choose ...</option>
-                            <option value="small subunit ribosomal RNA, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA, partial sequence">ITS</option>
+                            <option value="small subunit ribosomal RNA, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA, and internal transcribed spacer 2, complete sequence; and large subunit ribosomal RNA, partial sequence">ITS only or ITS-LSU</option>
                             <option value="large subunit ribosomal RNA">LSU</option>
                             <option value="small subunit ribosomal RNA">SSU</option>
                             <option value="internal transcribed spacer 1">ITS1 only</option>
@@ -71,10 +71,9 @@
                         </select>
                       </div>
                       <div class="col m12">
-                        <span class="-slidecheck-label">Is this published?</span>
                         <div class="-slidecheck">
                           <input type="checkbox" id="is_published" />
-                          <label for="is_published"></label>
+                          <label for="is_published">Is this published?</label>
                         </div>
                         <div id="publication_attributes">
                           <div class="form-group">
@@ -92,10 +91,9 @@
                         </div>
                     </div>
                     <div class="col m12">
-                      <span class="-slidecheck-label">Embargo this for a year?</span>
                       <div class="-slidecheck">
                           <input type="checkbox" id="has_embargo" />
-                          <label for="has_embargo"></label>
+                          <label for="has_embargo">Embargo this for a year?</label>
                       </div>
                     </div>
                     <div class="col m12">
