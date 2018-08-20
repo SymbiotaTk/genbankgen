@@ -87,6 +87,11 @@ class ControllerTbl2asn {
         return $line;
     }
 
+    private function _render_tsv($array) {
+        $array = (array) $array;
+        $n = (object) array("header" => array_keys($array), "data" => array_values($array));
+        return implode("\n",array(implode("\t",$n->header), implode("\t",$n->data)));
+    }
 
   	private function _cmd_create($args) {
   	    $TBL2ASN = $args->tbl2asn;
@@ -136,6 +141,7 @@ class ControllerTbl2asn {
         $build_fsa = $build_dir.DIRECTORY_SEPARATOR."sequence.fsa";
         $build_sqn = $build_dir.DIRECTORY_SEPARATOR."sequence.sqn";
         $build_gbf = $build_dir.DIRECTORY_SEPARATOR."sequence.gbf";
+        $result_tsv = $output_dir.DIRECTORY_SEPARATOR.$wrapper->seq_id."-".$wrapper->timestamp.".tsv";
         $result_sqn = $output_dir.DIRECTORY_SEPARATOR.$wrapper->seq_id."-".$wrapper->timestamp.".sqn";
         $result_gbf = $output_dir.DIRECTORY_SEPARATOR.$wrapper->seq_id."-".$wrapper->timestamp.".gbf";
         $tbl2asn_cmd = $build_dir.DIRECTORY_SEPARATOR."tbl2asn.cmd";
@@ -150,6 +156,7 @@ class ControllerTbl2asn {
         $fs->write(array("path" => $build_fsa, "content" => $this->Data->sqn->tbl->sequence));
         $fs->write(array("path" => $tbl2asn_cmd, "content" => $this->_cmd_create($wrapper)));
         $this->_cmd_exec($wrapper);
+        $fs->write(array("path" => $result_tsv, "content" => $this->_render_tsv($this->Data->sqn->{'source-modifiers'})));
         $fs->rename(array("path" => $build_sqn, "destination" => $result_sqn));
         $fs->rename(array("path" => $build_gbf, "destination" => $result_gbf));
 
