@@ -24,6 +24,7 @@ __class.prototype.set = function(key, value, args) {
         var my_results = this.results[args.offset];
         my_results["form"] = args.form;
         this.results[args.offset] = this._source_modifiers(my_results);
+        console.log("Dump data ...");
         console.log(this.results);
         this.post(args.offset);
     }
@@ -50,7 +51,8 @@ __class.prototype._format_date = function(date) {
 	    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 	    var month = months[parseInt(match[2])];
 	    var day = match[3];
-	    var converted = "{year}-{month}-{day}".replace("{year}", year).replace("{month}", month).replace("{day}", day);
+	    // var converted = "{year}-{month}-{day}".replace("{year}", year).replace("{month}", month).replace("{day}", day);
+	    var converted = "{day}-{month}-{year}".replace("{year}", year).replace("{month}", month).replace("{day}", day);
 	    console.log(converted);
 	    return converted;
     }
@@ -58,12 +60,15 @@ __class.prototype._format_date = function(date) {
 }
 
 __class.prototype._format_latlon = function(data) {
-    var lat = parseFloat(data.decimallatitude);
-    var lon = parseFloat(data.decimallongitude);
+    var lat = data.decimallatitude;
+    var lon = data.decimallongitude;
+
+    if ( lat == undefined || lon == undefined) { return ""; }
+    lat = parseFloat(data.decimallatitude);
+    lon = parseFloat(data.decimallongitude);
     var lat_ordinal = " N";
     var lon_ordinal = " E";
 
-    if (lat == undefined && lon == undefined) { return ""; }
     if (lat < 0) {
         lat = lat * -1;
         lat_ordinal = " S";
@@ -148,6 +153,32 @@ __class.prototype._format_additional_authors = function(data) {
     return [];
 }
 
+__class.prototype._format_submission_initials = function(item) {
+    var FirstNameInitial = item.firstname.charAt(0).toUpperCase();
+
+    if (item.middleinitial != undefined && item.middleinitial.trim() != "") {
+        var arr = [ FirstNameInitial, item.middleinitial ];
+        item.initials = arr.join(".")+".";
+    }
+    return item;
+}
+
+__class.prototype._fix_blank_additional_authors = function(data) {
+    console.log(data["publication-authors"]);
+    var authors = data["publication-authors"];
+    /* [ ] !!!
+    if (authors.data.length == 0) {
+        var labels = authors.labels;
+        var blank = [];
+        for (var i = 0, len = labels.length; i < len; i++) {
+            blank[labels[i]] = " ";
+        }
+        data["publication-authors"].data.push(blank);
+    }
+    */
+    return data;
+}
+
 __class.prototype._source_modifiers = function(data) {
   /*
   // !! [ ] if not middle initial, prompt for input
@@ -165,7 +196,7 @@ __class.prototype._source_modifiers = function(data) {
 
   // console.log(specimen);
     var form_data = data.form;
-    var user_data = data.user;
+    var user_data = this._format_submission_initials(data.user);
     var record_data = data.record['meta-data'];
     var collection_data = data.record['collection-meta-data'];
 
@@ -186,7 +217,7 @@ __class.prototype._source_modifiers = function(data) {
             "LastName": user_data.lastname,
             "FirstName": user_data.firstname,
             "MiddleInitial": user_data.middleinitial || "",
-            "Initials": false,
+            "Initials": user_data.initials || "",
             "Organization": user_data.institution || "",
             "Department": user_data.department || "",
             "City": user_data.city || "",
@@ -222,6 +253,8 @@ __class.prototype._source_modifiers = function(data) {
             "data": this._format_additional_authors(data.form.additional_authors),
         },
     }
+
+    output = this._fix_blank_additional_authors(output);
 
     output.tbl.ID = this.sequence_summary.id;
     output.tbl.START = this.sequence_summary.start;
