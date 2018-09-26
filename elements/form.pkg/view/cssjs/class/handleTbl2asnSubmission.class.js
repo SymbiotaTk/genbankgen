@@ -163,38 +163,7 @@ __class.prototype._format_submission_initials = function(item) {
     return item;
 }
 
-__class.prototype._fix_blank_additional_authors = function(data) {
-    console.log(data["publication-authors"]);
-    var authors = data["publication-authors"];
-    /* [ ] !!!
-    if (authors.data.length == 0) {
-        var labels = authors.labels;
-        var blank = [];
-        for (var i = 0, len = labels.length; i < len; i++) {
-            blank[labels[i]] = " ";
-        }
-        data["publication-authors"].data.push(blank);
-    }
-    */
-    return data;
-}
-
 __class.prototype._source_modifiers = function(data) {
-  /*
-  // !! [ ] if not middle initial, prompt for input
-  */
-
-  // setSequenceGeneModifier
-  // console.log(data);
-
-  /*
-  var results = data.results;
-  for(var k in results) {
-      console.log("KEY: "+k);
-  }
-  */
-
-  // console.log(specimen);
     var form_data = data.form;
     var user_data = this._format_submission_initials(data.user);
     var record_data = data.record['meta-data'];
@@ -254,8 +223,6 @@ __class.prototype._source_modifiers = function(data) {
         },
     }
 
-    output = this._fix_blank_additional_authors(output);
-
     output.tbl.ID = this.sequence_summary.id;
     output.tbl.START = this.sequence_summary.start;
     output.tbl.END = this.sequence_summary.end;
@@ -268,10 +235,6 @@ __class.prototype._source_modifiers = function(data) {
 
 __class.prototype.run = function() {
     var ajax = new handleAJAX();
-
-    // [ ] foreach item; build AJAX url from <user_id> and <record_id>; fetch appropriate data
-    // [ ] format object data for submission to tbl2asn
-    // [ ] POST the request to run tbl2asn
     var entries = [];
 
     for(var key in this.items) {

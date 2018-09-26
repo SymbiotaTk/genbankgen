@@ -63,13 +63,26 @@ class ControllerTbl2asn {
         return str_replace(array_keys($kv), array_values($kv), $file);
     }
 
+    private function _render_template_clean($text) {
+        if (preg_match_all('/({%.*%})/', $text, $matches)) {
+            $clean = array();
+            foreach($matches[0] as $item) {
+                $clean[$item] = "";
+            }
+            $text = str_replace(array_keys($clean), array_values($clean), $text);
+        }
+        return $text;
+    }
+
     private function _render_additional_authors($template, $data) {
-        if (count((array) $data->data) == 0) { return ""; }
         $build = array();
-        $file = file_get_contents($template);
         foreach($data->data as $author) {
-            $kv = $this->_render_wrap((array) $author);
-            array_push($build, str_replace(array_keys($kv), array_values($kv), $file));
+            $block = $this->_render_template_clean($this->_render_template($template, $author));
+            array_push($build, $block);
+        }
+        if (count((array) $data->data) == 0) { 
+            $block = $this->_render_template_clean(file_get_contents($template));
+            array_push($build, $block);
         }
         return implode(",\n", $build);
     }
