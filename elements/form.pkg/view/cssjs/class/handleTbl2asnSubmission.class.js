@@ -49,7 +49,7 @@ __class.prototype._format_date = function(date) {
     if (match) {
 	    var year = match[1];
 	    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-	    var month = months[parseInt(match[2])];
+	    var month = months[parseInt(match[2]) - 1];
 	    var day = match[3];
 	    // var converted = "{year}-{month}-{day}".replace("{year}", year).replace("{month}", month).replace("{day}", day);
 	    var converted = "{day}-{month}-{year}".replace("{year}", year).replace("{month}", month).replace("{day}", day);
